@@ -1,29 +1,30 @@
 
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import './Timer.css'
 import {TimerButton} from '../TimerButton/TimerButton'
 let myInterval:ReturnType<typeof setTimeout>;
 export const Timer = () => {
-  const [minutes,setMinutes]=useState(25);
+  const [minutes,setMinutes]=useState(1000);
   const [seconds,setSeconds]=useState(0);
   const [isOn,setIsOn]=useState(false);
+
   const startTimer = ()=>{
   if (isOn === true) {
       return;
     }
-    myInterval = setInterval(() => {
-        console.log(
-          "minutes",minutes,"seconds",seconds
-        );
+     myInterval = setInterval(() => {
+      
       if (seconds > 0) {
-        setSeconds(seconds - 1);
+        console.log("greater then zero");
+        setSeconds((seconds)=> seconds- 1);
       }
       if (seconds === 0) {
+          
         if (minutes === 0) {
           clearInterval(myInterval);
         } else {
-          setMinutes(minutes - 1)
-          setSeconds(59);
+          setMinutes((minutes)=>minutes-1)
+          setSeconds(59)
         }
       }
     }, 1000);
@@ -37,7 +38,7 @@ export const Timer = () => {
   }
   const resetTimer = () => {
     stopTimer();
-    setMinutes(25);
+    setMinutes(1000);
     setSeconds(0);
 
   }
@@ -45,7 +46,7 @@ export const Timer = () => {
   return (
     <div className='timer-container'>
     <div className="time-display">
-    {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+    {minutes}
     </div>
     <div className="timer-button-container">
     <TimerButton buttonAction={startTimer} buttonValue={"Start"} />
