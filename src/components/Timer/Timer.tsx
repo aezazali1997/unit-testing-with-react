@@ -1,5 +1,5 @@
 
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 import './Timer.css'
 import {TimerButton} from '../TimerButton/TimerButton'
 let myInterval:ReturnType<typeof setTimeout>;
